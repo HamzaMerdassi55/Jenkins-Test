@@ -22,7 +22,7 @@ node {
     
     stage('Deploy Docker Image'){
 	echo "Docker Container devopsexample deleting..."
-	sh "docker rm -f devopsexample"
+	sh "docker -H tcp://192.168.163.100:2375 rm -f devopsexample"
       	echo "Docker Image Tag Name: ${dockerImageTag}"
 	sh "docker -H tcp://192.168.163.100:2375 run --name devopsexample -d -p 2222:2222 devopsexample:${env.BUILD_NUMBER}"
     }
